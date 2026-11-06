@@ -1,134 +1,438 @@
 <!DOCTYPE html>
-<meta http-equiv='cache-control' content='no-cache'> 
-<meta http-equiv='expires' content='0'> 
-<meta http-equiv='pragma' content='no-cache'>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Portfolio</title>
+    <meta http-equiv='cache-control' content='no-cache'> 
+    <meta http-equiv='expires' content='0'> 
+    <meta http-equiv='pragma' content='no-cache'>
+    <title>Sofia Ameur | Webmaster, Designer & Artist</title>
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        :root {
+            --primary-color: #690101;
+            --primary-hover: #800202;
+            --bg-dark: #121212;
+            --bg-card: #1a1a1a;
+            --text-main: #e0e0e0;
+            --text-muted: #a0a0a0;
+            --border-color: #333333;
+        }
+
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
-            color: #333;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.6;
         }
+
         header {
-            background: #333;
+            background: #000000;
             color: #fff;
-            padding: 1em 0;
+            padding: 2.5em 0;
             text-align: center;
+            border-bottom: 3px solid var(--primary-color);
         }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            letter-spacing: 1px;
+        }
+
+        header p {
+            margin: 0.5em 0 0 0;
+            color: var(--text-muted);
+            font-size: 1.1em;
+        }
+
         nav {
             display: flex;
             justify-content: center;
-            margin-top: 1em;
+            background: #1a1a1a;
+            padding: 0.8em 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
         }
+
         nav a {
-            color: #333;
-            margin: 0 1em;
+            color: #fff;
+            margin: 0 1.2em;
             text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
         }
+
+        nav a:hover {
+            color: var(--primary-color);
+        }
+
         .container {
-            max-width: 1000px;
+            max-width: 1100px;
             margin: 2em auto;
             padding: 0 1em;
+            padding-bottom: 4em; 
         }
+
         .section {
-            margin: 2em 0;
+            margin: 2.5em 0;
+            background: var(--bg-card);
+            padding: 2.5em;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            border: 1px solid var(--border-color);
         }
+
         .section h2 {
-            margin-bottom: 1em;
-            border-bottom: 2px solid #333;
-            padding-bottom: 0.5em;
+            margin-top: 0;
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 0.3em;
+            color: #fff;
+            font-size: 1.8em;
         }
-        .projects, .skills {
+
+        /* Projects, Skills & Gallery */
+        .projects, .skills, .gallery {
             display: flex;
             flex-wrap: wrap;
+            gap: 1.5em;
         }
-        .project, .skill {
-            flex: 1 1 30%;
-            margin: 1em;
-            background: #fff;
-            padding: 1em;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+
+        .project, .skill-card, .art-item {
+            flex: 1 1 45%;
+            background: #222222;
+            padding: 1.5em;
+            border-radius: 6px;
+            border-left: 4px solid var(--primary-color);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            border-top: 1px solid var(--border-color);
+            border-right: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
         }
-        footer {
-            background: #333;
+
+        .project h3, .skill-card h3, .art-item h3 {
+            margin-top: 0;
             color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .project h3 i, .skill-card h3 i, .art-item h3 i {
+            color: var(--primary-color);
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 0.5em;
+            color: var(--text-muted);
+        }
+
+        /* Skills specific layout */
+        .skill-card {
+            flex: 1 1 30%;
+        }
+
+        /* Gallery specific layout */
+        .art-item {
+            flex: 1 1 30%;
+            background: #181818;
             text-align: center;
-            padding: 1em 0;
-            position: fixed;
+            border-left: 4px solid var(--primary-color);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .art-placeholder {
+            background: #262626;
+            height: 140px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            margin-bottom: 1em;
+            font-size: 0.9em;
+            border: 1px dashed #444;
+        }
+
+        .btn-action {
+            display: inline-block;
+            background: var(--primary-color);
+            color: #fff;
+            padding: 0.7em 1.5em;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 1em;
+            transition: background 0.3s;
+        }
+
+        .btn-action:hover {
+            background: var(--primary-hover);
+        }
+
+        .btn-instagram {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: transparent;
+            color: #fff;
+            border: 1px solid var(--primary-color);
+            padding: 0.5em 1em;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 0.9em;
+            font-weight: bold;
+            transition: all 0.3s;
+            margin-top: 0.8em;
+        }
+
+        .btn-instagram:hover {
+            background: var(--primary-color);
+            color: #fff;
+        }
+
+        .instagram-banner {
+            background: #181818;
+            border: 1px solid var(--border-color);
+            border-left: 4px solid var(--primary-color);
+            padding: 1.5em;
+            border-radius: 6px;
+            margin-top: 1.5em;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1em;
+        }
+
+        footer {
+            background: #000000;
+            color: var(--text-muted);
+            text-align: center;
+            padding: 1.5em 0;
             width: 100%;
-            bottom: 0;
+            border-top: 2px solid var(--primary-color);
+        }
+
+        footer a {
+            color: #fff;
+            text-decoration: none;
+        }
+        
+        footer a:hover {
+            color: var(--primary-color);
         }
     </style>
 </head>
 <body>
 
 <header>
-    <h1>My Portfolio</h1>
+    <h1>Sofia Ameur</h1>
+    <p>Webmaster, Digital Content Designer, AI App Developer & Artist</p>
 </header>
 
 <nav>
     <a href="#about">About Me</a>
+    <a href="#skills">Skills & AI</a>
     <a href="#projects">Projects</a>
-    <a href="#skills">Skills</a>
+    <a href="#gallery">Design & Art Gallery</a>
     <a href="#contact">Contact</a>
 </nav>
 
 <div class="container">
 
+    <!-- ABOUT SECTION -->
     <section id="about" class="section">
         <h2>About Me</h2>
-        <p>Hello! I'm [Your Name], a passionate web developer with experience in creating dynamic and responsive websites. I enjoy coding and love to learn new technologies.</p>
+        <p>Hello! I am a versatile Webmaster, Creative Designer, and Full-Stack Developer with a Master’s degree in Networks and Embedded Systems from Mouloud Mammeri University. I seamlessly bridge the gap between technical web engineering and creative visual storytelling. Fluent in English and French, I specialize in building modern web applications, leveraging cutting-edge AI tools for design and code generation, producing multimedia audio-visual assets, and expressing creativity through traditional painting and digital art.</p>
     </section>
 
-    <section id="projects" class="section">
-        <h2>Projects</h2>
-        <div class="projects">
-            <div class="project">
-                <h3>Project 1</h3>
-                <p>Description of Project 1</p>
-            </div>
-            <div class="project">
-                <h3>Project 2</h3>
-                <p>Description of Project 2</p>
-            </div>
-            <div class="project">
-                <h3>Project 3</h3>
-                <p>Description of Project 3</p>
-            </div>
-        </div>
-    </section>
-
+    <!-- SKILLS & EXPERTISE SECTION -->
     <section id="skills" class="section">
-        <h2>Skills</h2>
+        <h2>Skills & AI Expertise</h2>
         <div class="skills">
-            <div class="skill">
-                <h3>HTML & CSS</h3>
+            
+            <div class="skill-card">
+                <h3><i class="fa-solid fa-paintbrush"></i> Design Tools</h3>
+                <ul>
+                    <li><strong>Figma & Adobe Illustrator:</strong> UI/UX wireframing, vector graphics, and branding assets.</li>
+                    <li><strong>Canva & Canva AI:</strong> Dynamic layouts, automated workflows, and social media branding.</li>
+                </ul>
             </div>
-            <div class="skill">
-                <h3>JavaScript</h3>
+
+            <div class="skill-card">
+                <h3><i class="fa-solid fa-wand-magic-sparkles"></i> AI Generation & Editing</h3>
+                <ul>
+                    <li><strong>Image & Media AI:</strong> Advanced AI tools for generating, modifying, and retouching visual assets.</li>
+                    <li><strong>AI App Development:</strong> Utilizing LLMs and AI coding assistants for robust web application logic.</li>
+                </ul>
             </div>
-            <div class="skill">
-                <h3>React</h3>
+
+            <div class="skill-card">
+                <h3><i class="fa-solid fa-microphone-lines"></i> Audio & Voice Production</h3>
+                <ul>
+                    <li><strong>Voice Overs:</strong> Professional voice narration using both personal voice recording and advanced AI text-to-speech tools.</li>
+                </ul>
             </div>
+
+            <div class="skill-card">
+                <h3><i class="fa-solid fa-code"></i> Web Development</h3>
+                <ul>
+                    <li><strong>Tech Stack:</strong> WordPress administration, PHP, HTML/CSS, JavaScript, Python, and responsive design systems.</li>
+                </ul>
+            </div>
+
+            <div class="skill-card">
+                <h3><i class="fa-solid fa-palette"></i> Fine Arts</h3>
+                <ul>
+                    <li><strong>Traditional & Digital Painting:</strong> Expressive traditional paint work, pencil sketching, and digital illustration.</li>
+                </ul>
+            </div>
+
+            <div class="skill-card">
+                <h3><i class="fa-solid fa-globe"></i> Languages & Soft Skills</h3>
+                <ul>
+                    <li>Bilingual (English & French), project management, digital content coordination, and SEO strategies.</li>
+                </ul>
+            </div>
+
         </div>
     </section>
 
-    <section id="contact" class="section">
-        <h2>Contact</h2>
-        <p>If you'd like to get in touch, feel free to <a href="mailto:your.email@example.com">email me</a>.</p>
+    <!-- PROJECTS SECTION -->
+    <section id="projects" class="section">
+        <h2>Key Professional & Featured Projects</h2>
+        <div class="projects">
+            
+            <!-- Project 1: Cuisinox -->
+            <div class="project">
+                <h3>Cuisinox Website Redesign & Administration</h3>
+                <p><strong>Tech Stack:</strong> WordPress, PHP, HTML/CSS, UI/UX, Adobe Creative Cloud</p>
+                <p>Led structural and visual redesigns for corporate B2B environments, crafting high-impact multilingual video scripts, marketing copy, and visual catalogs.</p>
+                <ul>
+                    <li>Managed platform infrastructure scaling up to 2,100 active monthly users.</li>
+                    <li>Coordinated digital asset management and multimedia uploads reaching over 1 million views.</li>
+                </ul>
+            </div>
+
+            <!-- Project 2: SmartGreen Protect -->
+            <div class="project">
+                <h3>SmartGreen Protect (AI Web App)</h3>
+                <p><strong>Tech Stack:</strong> AI-Assisted Development, Frontend Frameworks, IoT Integration</p>
+                <p>Developed an intelligent web and mobile solution prototype for plant pest identification, leveraging AI-powered identification and automated solution recommendations.</p>
+                <ul>
+                    <li>Designed responsive frontend layouts and data integration workflows.</li>
+                    <li>Integrated AI automation to streamline diagnosis for biodiversity protection.</li>
+                </ul>
+                <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                    <a href="https://chanovava.github.io/SMARTGREEN-main/about" target="_blank" class="btn-action" style="background: var(--primary-color); display: inline-flex; align-items: center; gap: 8px;">
+                        <i class="fa-solid fa-globe"></i> Live Website
+                    </a>
+                    <a href="https://drive.google.com/file/d/1fs42xKeXhEoCXmovUH7ldzWMpo2RcQSd/view?usp=drive_link" target="_blank" class="btn-action" style="background: #333; display: inline-flex; align-items: center; gap: 8px;">
+                        <i class="fa-solid fa-play"></i> Video Demo
+                    </a>
+                </div>
+            </div>
+
+            <!-- Project 3: Card Scan App -->
+            <div class="project">
+                <h3>Card Scan Web App</h3>
+                <p><strong>Tech Stack:</strong> JavaScript, HTML/CSS, Frontend Deployment</p>
+                <p>Built a functional data card scanning web utility hosted live on GitHub Pages, streamlining data collection and interactive parsing.</p>
+                <ul>
+                    <li>Implemented responsive UI for quick scanning workflows.</li>
+                    <li>Deploys seamlessly via GitHub version control protocols.</li>
+                </ul>
+                <a href="https://chanovava.github.io/sscan_data_card/" target="_blank" class="btn-action" style="background: var(--primary-color); display: inline-flex; align-items: center; gap: 8px;">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i> Open Live Card Scan App
+                </a>
+            </div>
+
+            <!-- Project 4: Hair Treatment Brand UI & Animation -->
+            <div class="project">
+                <h3>Hair Treatment Brand — UI & Animation Design</h3>
+                <p><strong>Tech Stack:</strong> Figma, Jitter Animation, UI/UX Design</p>
+                <p>Designed a sleek, modern visual identity and interactive UI prototype for a premium hair treatment brand, featuring fluid animations and a polished product showcase layout.</p>
+                <ul>
+                    <li>Created smooth micro-interactions and animations to highlight product benefits.</li>
+                    <li>Focused on clean typography, elegant color balancing, and high-end aesthetic presentation.</li>
+                </ul>
+                <a href="https://www.figma.com/proto/6IeKj193vQRFUrDburboBo/Jitter-%C2%B7-Animation-for-Figma--Community-?node-id=1-360&t=XSrICQYsZkuxA9Y2-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1" target="_blank" class="btn-action" style="background: var(--primary-color); display: inline-flex; align-items: center; gap: 8px;">
+                    <i class="fa-solid fa-play"></i> Test Interactive Prototype
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- DESIGN & ART GALLERY SECTION -->
+    <section id="gallery" class="section">
+        <h2>Design & Art Gallery</h2>
+        <p>Explore my visual art and creative media creations directly on Instagram. Click below to view my latest traditional paintings, digital drawings, and design projects:</p>
+        
+        <div class="gallery">
+            
+            <div class="art-item">
+                <div class="art-placeholder"><i class="fa-solid fa-palette fa-2x"></i></div>
+                <div>
+                    <h3>Traditional Painting & Sketches</h3>
+                    <p style="font-size: 0.9em; color: var(--text-muted);">Canvas paint work, pencil drawings, and expressive physical artwork.</p>
+                </div>
+                <a href="#" target="_blank" class="btn-instagram">
+                    <i class="fa-brands fa-instagram"></i> coming soon...
+                </a>
+            </div>
+
+            <div class="art-item">
+                <div class="art-placeholder"><i class="fa-solid fa-laptop-code fa-2x"></i></div>
+                <div>
+                    <h3>Digital Art & Illustration</h3>
+                    <p style="font-size: 0.9em; color: var(--text-muted);">Digital paintings, vector artwork, and creative digital illustrations.</p>
+                </div>
+                <a href="https://www.instagram.com/chanabanana_art?exln=MXF5dzdyMnduanA3Yg==" target="_blank" class="btn-instagram">
+                    <i class="fa-brands fa-instagram"></i> View Digital Art
+                </a>
+            </div>
+
+        
+
+        </div>
+        <section id="contact" class="section"></section>
+
+        <!-- Direct Instagram Banner -->
+        <div class="instagram-banner">
+            <div>
+                <h3 style="margin: 0; color: #fff;"><i class="fa-brands fa-instagram" style="color: var(--primary-color);"></i> Follow My Creative Journey</h3>
+                <p style="margin: 0.3em 0 0 0; color: var(--text-muted);">Check out my full gallery of paintings, digital artwork, and design projects on Instagram.</p>
+            </div>
+            <a href="https://www.instagram.com/chanabanana_art?exln=MXF5dzdyMnduanA3Yg==" target="_blank" class="btn-instagram">
+                <i class="fa-brands fa-instagram"></i> @chanabanana_art
+            </a>
+        </div>
+        
     </section>
 
 </div>
 
 <footer>
-    <p>&copy; 2024 [Your Name]. All rights reserved.</p>
+    <p>&copy; 2026 Sofia Ameur. Built with passion for code and design.</p>
+    <p style="margin-top: 0.5em;">
+        <a href="https://www.linkedin.com/in/ameur-sofia/" target="_blank" style="color: var(--text-muted); text-decoration: none;">
+            <i class="fa-brands fa-linkedin" style="color: var(--primary-color);"></i> LinkedIn Profile
+        </a>
+    </p>
 </footer>
 
 </body>
