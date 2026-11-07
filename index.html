@@ -32,37 +32,52 @@
         header {
             background: #000000;
             color: #fff;
-            padding: 2.5em 0;
+            padding: 2.5em 1em;
             text-align: center;
             border-bottom: 3px solid var(--primary-color);
         }
 
         header h1 {
             margin: 0;
-            font-size: 2.5em;
+            font-size: 2.2em;
             letter-spacing: 1px;
         }
 
         header p {
             margin: 0.5em 0 0 0;
             color: var(--text-muted);
-            font-size: 1.1em;
+            font-size: 1em;
         }
 
+        /* Navigation & Hamburger Styles */
         nav {
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
+            align-items: center;
             background: #1a1a1a;
-            padding: 0.8em 0;
+            padding: 0.8em 1.5em;
             position: sticky;
             top: 0;
             z-index: 1000;
             border-bottom: 1px solid var(--border-color);
         }
 
+        .nav-brand {
+            color: #fff;
+            font-weight: bold;
+            font-size: 1.1em;
+            display: none;
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            gap: 1.5em;
+        }
+
         nav a {
             color: #fff;
-            margin: 0 1.2em;
             text-decoration: none;
             font-weight: bold;
             transition: color 0.3s;
@@ -70,6 +85,16 @@
 
         nav a:hover {
             color: var(--primary-color);
+        }
+
+        /* Hamburger Toggle Button */
+        .hamburger {
+            display: none;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 1.5em;
+            cursor: pointer;
         }
 
         .container {
@@ -82,7 +107,7 @@
         .section {
             margin: 2.5em 0;
             background: var(--bg-card);
-            padding: 2.5em;
+            padding: 2em;
             border-radius: 8px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.5);
             border: 1px solid var(--border-color);
@@ -93,10 +118,10 @@
             border-bottom: 2px solid var(--primary-color);
             padding-bottom: 0.3em;
             color: #fff;
-            font-size: 1.8em;
+            font-size: 1.6em;
         }
 
-        /* Projects, Skills & Gallery */
+        /* Projects, Skills & Gallery Layout */
         .projects, .skills, .gallery {
             display: flex;
             flex-wrap: wrap;
@@ -104,7 +129,7 @@
         }
 
         .project, .skill-card, .art-item {
-            flex: 1 1 45%;
+            flex: 1 1 100%;
             background: #222222;
             padding: 1.5em;
             border-radius: 6px;
@@ -113,6 +138,7 @@
             border-top: 1px solid var(--border-color);
             border-right: 1px solid var(--border-color);
             border-bottom: 1px solid var(--border-color);
+            box-sizing: border-box;
         }
 
         .project h3, .skill-card h3, .art-item h3 {
@@ -121,6 +147,7 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            font-size: 1.2em;
         }
 
         .project h3 i, .skill-card h3 i, .art-item h3 i {
@@ -134,16 +161,10 @@
         li {
             margin-bottom: 0.5em;
             color: var(--text-muted);
+            word-break: break-word;
         }
 
-        /* Skills specific layout */
-        .skill-card {
-            flex: 1 1 30%;
-        }
-
-        /* Gallery specific layout */
         .art-item {
-            flex: 1 1 30%;
             background: #181818;
             text-align: center;
             border-left: 4px solid var(--primary-color);
@@ -154,7 +175,7 @@
 
         .art-placeholder {
             background: #262626;
-            height: 140px;
+            height: 120px;
             border-radius: 4px;
             display: flex;
             align-items: center;
@@ -169,12 +190,13 @@
             display: inline-block;
             background: var(--primary-color);
             color: #fff;
-            padding: 0.7em 1.5em;
+            padding: 0.7em 1.2em;
             border-radius: 4px;
             text-decoration: none;
             font-weight: bold;
             margin-top: 1em;
             transition: background 0.3s;
+            text-align: center;
         }
 
         .btn-action:hover {
@@ -221,9 +243,10 @@
             background: #000000;
             color: var(--text-muted);
             text-align: center;
-            padding: 1.5em 0;
+            padding: 1.5em 1em;
             width: 100%;
             border-top: 2px solid var(--primary-color);
+            box-sizing: border-box;
         }
 
         footer a {
@@ -233,6 +256,49 @@
         
         footer a:hover {
             color: var(--primary-color);
+        }
+
+        /* Responsive Breakpoints for Tablets & Desktops */
+        @media (min-width: 768px) {
+            .project, .skill-card {
+                flex: 1 1 45%;
+            }
+            .skill-card {
+                flex: 1 1 30%;
+            }
+            .art-item {
+                flex: 1 1 30%;
+            }
+            header h1 {
+                font-size: 2.5em;
+            }
+        }
+
+        /* Mobile Hamburger Query */
+        @media (max-width: 767px) {
+            .hamburger {
+                display: block;
+            }
+            .nav-brand {
+                display: block;
+            }
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: #1a1a1a;
+                padding: 1em 0;
+                border-bottom: 1px solid var(--border-color);
+                box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+                text-align: center;
+                gap: 1em;
+            }
+            .nav-links.active {
+                display: flex;
+            }
         }
     </style>
 </head>
@@ -244,11 +310,17 @@
 </header>
 
 <nav>
-    <a href="#about">About Me</a>
-    <a href="#skills">Skills & AI</a>
-    <a href="#projects">Projects</a>
-    <a href="#gallery">Design & Art Gallery</a>
-    <a href="#contact">Contact</a>
+    <div class="nav-brand">Sofia Ameur</div>
+    <button class="hamburger" id="hamburger-btn" aria-label="Toggle Navigation">
+        <i class="fa-solid fa-bars"></i>
+    </button>
+    <div class="nav-links" id="nav-links">
+        <a href="#about" class="nav-item">About Me</a>
+        <a href="#skills" class="nav-item">Skills & AI</a>
+        <a href="#projects" class="nav-item">Projects</a>
+        <a href="#gallery" class="nav-item">Gallery</a>
+        <a href="#contact" class="nav-item">Contact</a>
+    </div>
 </nav>
 
 <div class="container">
@@ -406,10 +478,18 @@
                 </a>
             </div>
 
-        
+            <div class="art-item">
+                <div class="art-placeholder"><i class="fa-solid fa-object-group fa-2x"></i></div>
+                <div>
+                    <h3>UI/UX & Visual Designs</h3>
+                    <p style="font-size: 0.9em; color: var(--text-muted);">Figma wireframes, social media graphics, and brand design assets.</p>
+                </div>
+                <a href="https://www.instagram.com/chanabanana_art?exln=MXF5dzdyMnduanA3Yg==" target="_blank" class="btn-instagram">
+                    <i class="fa-brands fa-instagram"></i> View Design Posts
+                </a>
+            </div>
 
         </div>
-        <section id="contact" class="section"></section>
 
         <!-- Direct Instagram Banner -->
         <div class="instagram-banner">
@@ -424,6 +504,20 @@
         
     </section>
 
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="section">
+        <h2>Contact Me</h2>
+        <p>I am always open to discussing new webmaster projects, creative collaborations, or opportunities in Canada. Feel free to reach out directly via email or connect with me professionally.</p>
+        <div style="display: flex; gap: 15px; flex-wrap: wrap; margin-top: 1.5em;">
+            <a href="mailto:ameurameur.sofia@gmail.com" class="btn-action" style="display: inline-flex; align-items: center; gap: 8px;">
+                <i class="fa-solid fa-envelope"></i> Send an Email
+            </a>
+            <a href="https://www.linkedin.com/in/ameur-sofia/" target="_blank" class="btn-action" style="background: #0077b5; display: inline-flex; align-items: center; gap: 8px;">
+                <i class="fa-brands fa-linkedin"></i> LinkedIn Profile
+            </a>
+        </div>
+    </section>
+
 </div>
 
 <footer>
@@ -434,6 +528,24 @@
         </a>
     </p>
 </footer>
+
+<!-- JavaScript to Handle Hamburger Toggle -->
+<script>
+    const hamburgerBtn = document.getElementById('hamburger-btn');
+    const navLinks = document.getElementById('nav-links');
+    const navItems = document.querySelectorAll('.nav-item');
+
+    hamburgerBtn.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+    });
+
+    // Close mobile menu automatically when a link is clicked
+    navItems.forEach(item => {
+        item.addEventListener('click', () => {
+            navLinks.classList.remove('active');
+        });
+    });
+</script>
 
 </body>
 </html>
